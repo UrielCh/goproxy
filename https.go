@@ -60,7 +60,7 @@ func (proxy *ProxyHttpServer) dial(network, addr string) (c net.Conn, err error)
 		if err != nil {
 			return nil, err
 		}
-		return net.DialTCP("tcp", nil, tcpAddr)
+		return net.DialTCP("tcp", proxy.Bind, tcpAddr)
 	}
 	return net.Dial(network, addr)
 }
