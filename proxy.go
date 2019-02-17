@@ -19,7 +19,9 @@ type ProxyHttpServer struct {
 	// KeepDestinationHeaders indicates the proxy should retain any headers present in the http.Response before proxying
 	KeepDestinationHeaders bool
 	// setting Verbose to true will log information on each request sent to the proxy
-	Verbose         bool
+	Verbose bool
+	// explicit bind outgoing TCP connection
+	Bind            *net.TCPAddr
 	Logger          *log.Logger
 	NonproxyHandler http.Handler
 	reqHandlers     []ReqHandler

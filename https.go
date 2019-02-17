@@ -54,6 +54,14 @@ func (proxy *ProxyHttpServer) dial(network, addr string) (c net.Conn, err error)
 	if proxy.Tr.Dial != nil {
 		return proxy.Tr.Dial(network, addr)
 	}
+	if network == "tcp" && proxy.Bind != nil {
+		// Patch to bind listen TCP uriel
+		tcpAddr, err := net.ResolveTCPAddr("tcp", addr)
+		if err != nil {
+			return nil, err
+		}
+		return net.DialTCP("tcp", nil, tcpAddr)
+	}
 	return net.Dial(network, addr)
 }
 
