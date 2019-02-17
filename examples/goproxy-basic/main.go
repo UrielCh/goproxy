@@ -6,7 +6,7 @@ import (
 	"net"
 	"net/http"
 
-	"github.com/elazarl/goproxy"
+	"github.com/UrielCh/goproxy"
 )
 
 func main() {
